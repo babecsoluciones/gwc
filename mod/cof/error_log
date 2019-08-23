@@ -1,0 +1,2 @@
+[16-Aug-2019 21:21:28 UTC] PHP Warning:  require_once(cnx/swgc-mysql.php): failed to open stream: No such file or directory in /home3/emicapac/public_html/app/mod/cof/cata-usr-reg.php on line 2
+[16-Aug-2019 21:21:28 UTC] PHP Fatal error:  require_once(): Failed opening required 'cnx/swgc-mysql.php' (include_path='.:/opt/cpanel/ea-php56/root/usr/share/pear') in /home3/emicapac/public_html/app/mod/cof/cata-usr-reg.php on line 2

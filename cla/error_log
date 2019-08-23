@@ -1,0 +1,5 @@
+[03-Aug-2019 18:22:28 UTC] PHP Parse error:  syntax error, unexpected '$fhFecha' (T_VARIABLE) in /home3/emicapac/public_html/app/cla/cata-cur-reg.php on line 56
+[03-Aug-2019 18:22:43 UTC] PHP Parse error:  syntax error, unexpected '$fhFecha' (T_VARIABLE) in /home3/emicapac/public_html/app/cla/cata-cur-reg.php on line 56
+[03-Aug-2019 18:47:40 UTC] PHP Parse error:  syntax error, unexpected '$fhFecha' (T_VARIABLE) in /home3/emicapac/public_html/app/cla/cata-cur-reg.php on line 56
+[03-Aug-2019 18:48:03 UTC] PHP Parse error:  syntax error, unexpected '$fhFecha' (T_VARIABLE) in /home3/emicapac/public_html/app/cla/cata-cur-reg.php on line 56
+[06-Aug-2019 18:25:14 UTC] PHP Parse error:  syntax error, unexpected ';' in /home3/emicapac/public_html/app/cla/cata-cur-reg.php on line 238
