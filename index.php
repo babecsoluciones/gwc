@@ -44,7 +44,7 @@ if(!$_GET['tDirectorio']||!$_GET['tCodSeccion'])
     <meta name="keywords" content="GWC Dashboard">
 
     <!-- Title Page-->
-    <title>SGI | Dashboard</title>
+    <title>GWC | Dashboard</title>
 
     <!-- Fontfaces CSS-->
     <link href="/css/font-face.css" rel="stylesheet" media="all">
@@ -88,7 +88,7 @@ if(!$_GET['tDirectorio']||!$_GET['tCodSeccion'])
             <div class="header-mobile__bar">
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
-                        <a class="logo" href="index.html">
+                        <a class="logo" href="#">
                             <img src="/images/icon/logo-black.png" alt="GWC" />
                         </a>
                         <button class="hamburger hamburger--slider" type="button">
@@ -116,7 +116,7 @@ if(!$_GET['tDirectorio']||!$_GET['tCodSeccion'])
         <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
-                <a href="index.php?tCodSeccion=inicio">
+                <a href="#">
                     <img src="/images/icon/logo-black.png" alt="GWC" />
                 </a>
             </div>

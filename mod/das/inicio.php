@@ -56,7 +56,7 @@ $bDelete = $_SESSION['bDelete'];
                                             <? while($rPedido = mysql_fetch_array($rsPedidos)) { ?>
                                             <tr>
                                                 <td><? menuEmergente($rPedido{'eCodRegistro'}); ?></td>
-                                                <td><?=ucwords($rPedido{'tEmpresa'});?></td>
+                                                <td><?=ucwords(utf8_encode($rPedido{'tEmpresa'});?></td>
                                                 <td><?=date('d/m/Y H:i',strtotime($rPedido{'fhFechaRegistro'}));?></td>
                                                 <? if($_SESSION['sessionAdmin']['eCodPerfil']!=4) { ?><td><?=ucwords($rPedido{'tNombreUsuario'}.' '.$rPedido{'tApellidosUsuario'});?></td><? } ?>
                                                 <td><?=ucwords($rPedido{'tTitulo'});?></td>
