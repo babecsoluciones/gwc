@@ -303,7 +303,7 @@ class clSis
         return $fname;
     }
     
-    private function generarUrl($seccion)
+    public function generarUrl($seccion)
     {
         $base = explode('-',$seccion);
         $tAccion = $base[2];
