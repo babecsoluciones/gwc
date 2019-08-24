@@ -118,7 +118,8 @@ if(!$_GET['tDirectorio']||!$_GET['tCodSeccion'])
     
 </head>
 
-<body class="animsition">
+<!--<body class="animsition">-->
+<body class="animsition" oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
     <div class="page-wrapper">
         <!-- HEADER MOBILE-->
         <header class="header-mobile d-block d-lg-none">
@@ -327,77 +328,7 @@ setTimeout(function(){
 
     </div>
     
-    <!--transacciones-->
-    <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          
-        </div>
-        <div class="modal-body">
-          <form action="?tCodSeccion=<?=$_GET['tCodSeccion']?>" method="post" id="nvaTran">
-              <input type="hidden" id="eCodEventoTransaccion" name="eCodEventoTransaccion">
-            <label>Monto: $<input type="text" class="form-control" name="dMonto" id="dMonto" required></label><br>
-            <label>Forma de pago: 
-              <select name="eCodTipoPago" id="eCodTipoPago">
-                <?
-    $select = "SELECT * FROM CatTiposPagos ORDER BY tNombre ASC";
-                                        $rsTiposPagos = mysql_query($select);
-                                        while($rTipoPago = mysql_fetch_array($rsTiposPagos))
-                                        {
-                                            ?>
-                  <option value="<?=$rTipoPago{'eCodTipoPago'}?>"><?=$rTipoPago{'tNombre'}?></option>
-                  <?
-                                        }
-    ?>
-                </select>
-              </label><br>
-              <input type="button" onclick="nvaTran();" value="Guardar" name="operador" class="btn btn-info">
-            </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-        </div>
-      </div>
       
-    </div>
-  </div>
-    
-    <!--modal de responsable-->
-    <div class="modal fade" id="myModalOperador" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          
-        </div>
-        <div class="modal-body">
-          <form action="?tCodSeccion=<?=$_GET['tCodSeccion']?>" method="post" id="nvaOperador">
-              <input type="hidden" id="eCodEventoOperador" name="eCodEventoOperador">
-            <label><input type="radio" value="tOperadorEntrega" name="tCampo"> A la Entrega </label><br>
-            <label><input type="radio" value="tOperadorRecoleccion" name="tCampo"> A la Recolecci&oacute;n </label><br><br>
-            <label>Responsable: 
-              <input type="text" class="form-control" name="tResponsable" id="tResponsable" required>
-              </label><br>
-              <input type="button" onclick="nvaOper();" value="Guardar" name="operador" class="btn btn-info">
-            </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-        </div>
-      </div>
-      
-    </div>
-  </div>
-        
-   
-        
         <!-- Modal -->
   <div class="modal fade" id="resProceso" role="dialog">
     <div class="modal-dialog">
@@ -447,56 +378,7 @@ setTimeout(function(){
       
     </div>
   </div>
-      <!-- Modal -->
-  <div class="modal fade" id="resDetalle" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-body" id="detalleEvento">
-         
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        </div>
-      </div>
-      
-    </div>
-  </div>
-      <!-- Modal -->
-  <div class="modal fade" id="detCarga" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-          <form id="carga" name="carga">
-              <input type="hidden" id="eCodEventoCarga" name="eCodEventoCarga">
-          <div class="modal-body">
-              <label>Veh&iacute;culo</label>
-         <select class="form-control" id="eCodCamioneta" name="eCodCamioneta" onchange="validarCarga()">
-              <option value="">Seleccione...</option>
-             <? $select = "SELECT * FROM CatCamionetas WHERE tCodEstatus = 'AC' ORDER BY eCodCamioneta ASC";
-                echo $select;
-                $rsCamionetas = mysql_query($select);
-                while($rCamioneta = mysql_fetch_array($rsCamionetas)) { ?>
-             <option value="<?=$rCamioneta{'eCodCamioneta'};?>"><?=$rCamioneta{'tNombre'};?></option>
-             <? } ?>
-              </select>
-        </div>    
-        <div class="modal-body" id="detalleCarga" >
-         
-        </div>
-              <div class="modal-body" style="text-align:center;">
-         <button type="button" id="guardarCarga" class="btn btn-info" style="display:none;" onclick="registrarCarga();">Guardar</button>
-        </div>
-            </form>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        </div>
-      </div>
-      
-    </div>
-  </div>
+ 
         <!-- Modal -->
   <div class="modal fade" id="resError" role="dialog">
     <div class="modal-dialog">
@@ -648,45 +530,7 @@ setTimeout(function(){
           });
           
       }
-      /*Asignaciones*/
-      function asignarParametro(codigo,nombre)
-      {
-          document.getElementById('eCodCliente').value = codigo;
-          document.getElementById('tNombreCliente').value = nombre;
-          document.getElementById('tNombreCliente').style.display = 'inline';
-          document.getElementById('asignarCliente').style.display = 'inline';
-          document.getElementById('cot1').style.display = 'inline';
-          document.getElementById('cot2').style.display = 'inline';
-          document.getElementById('cot3').style.display = 'inline';
-          var tblClientes = document.getElementById('mostrarTabla');
-          if(tblClientes)
-          {
-          tblClientes.style.display='none';
-          }
-      }
       
-      function verMisClientes()
-      {
-          $('#misClientes').modal({
-                show: 'false'
-            });
-      }
-      
-      function agregarTransaccion(codigo)
-      {
-          document.getElementById('eCodEventoTransaccion').value = codigo;
-      }
-            
-      function nuevaTransaccion(codigo)
-      {
-          document.getElementById('eCodEventoTransaccion').value = codigo;
-          $('#myModal').modal('show');
-      }
-      
-      function agregarOperador(codigo)
-      {
-          document.getElementById('eCodEventoOperador').value = codigo;
-      }
             
     function asignarFecha(fecha,etiqueta)
       {
@@ -694,63 +538,7 @@ setTimeout(function(){
           document.getElementById('tFechaConsulta').innerHTML = '<br><h2>'+etiqueta+'</h2>';
           consultarFecha();
       }
-            
-    function validarCarga()
-      {
-          var cmbTotal = document.querySelectorAll("[id^=eCodInventario]"),
-              eCodCamioneta = document.getElementById('eCodCamioneta'),
-              clickeado = 0;
-          
-          cmbTotal.forEach(function(nodo){
-            if(nodo.checked==true)
-                { clickeado++;}
-        });
-          
-          if(clickeado==cmbTotal.length && eCodCamioneta.value>0)
-              { document.getElementById('guardarCarga').style.display = 'inline'; }
-          else
-              { document.getElementById('guardarCarga').style.display = 'none'; }
-      }
-            
-    function registrarCarga()
-        {
-            $('#detCarga').modal('hide');
-            
-            var obj = $('#carga').serializeJSON();
-          var jsonString = JSON.stringify(obj);
-          
-          $.ajax({
-              type: "POST",
-              url: "<?=obtenerURL();?>cla/reg-carga-eve.php",
-              data: jsonString,
-              contentType: "application/json; charset=utf-8",
-              dataType: "json",
-              success: function(data){
-                  if(data.exito==1)
-                  {
-                      
-                      $('#resExito').modal('show');
-                      setTimeout(function(){ $('#resExito').modal('hide'); consultarFecha(); }, 3000);
-                      
-                  }
-                  else
-                      {
-                          $('#detCarga').modal('show');
-                          var mensaje="";
-                          for(var i=0;i<data.errores.length;i++)
-                     {
-                         mensaje += "-"+data.errores[i]+"\n";
-                     }
-                          alert("Error al procesar la solicitud.\n<-Valide la siguiente informacion->\n\n"+mensaje);
-                         
-                      }
-              },
-              failure: function(errMsg) {
-                  alert('Error al enviar los datos.');
-              }
-          });    
-        }
-      
+    
             
       $(document).ready( function () {
           
