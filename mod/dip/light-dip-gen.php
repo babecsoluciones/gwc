@@ -29,7 +29,7 @@ $rRegistro = mysql_fetch_array($rsRegistro);
 <body class="estilo" style="margin:0; padding:0;">
     <table width="612" height="792" style="background-image:url('<?=obtenerURL()?>cla/<?=$rRegistro{'tArchivoDiploma'};?>');">
     <tr>
-        <td height="464" colspan="2"></td>
+        <td height="414" colspan="2"></td>
     </tr>
     <tr>
         <td height="198" valign="middle" align="center" colspan="2"><h1><?=utf8_encode($rRegistro{'tTitulo'}.' '.$rRegistro{'tNombre'}.' '.$rRegistro{'tApellidos'});?></h1></td>
