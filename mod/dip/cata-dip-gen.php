@@ -14,7 +14,7 @@ echo $url;
 $html=file_get_contents($url);
 
 
-
+echo '<textarea>'.file_get_contents($url).'</textarea>';
 
 //$html=str_replace('font-size:14px;','font-size:12px;',$html);
 
