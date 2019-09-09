@@ -8,7 +8,8 @@ require_once("../../cls/cls-sistema.php");
 include("../../inc/fun-ini.php");
 $url = obtenerURL()."mod/dip/light-dip-gen.php?eCodRegistro=".$_GET['v1'];
 
-//echo $url; die();
+echo $url; 
+//die();
 
 $html=file_get_contents($url);
 
