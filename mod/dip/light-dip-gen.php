@@ -32,7 +32,10 @@ $rRegistro = mysql_fetch_array($rsRegistro);
         <td height="464" colspan="2"></td>
     </tr>
     <tr>
-        <td height="198" valign="middle" align="center" colspan="2"><h3><?=utf8_encode($rRegistro{'tTitulo'}.' '.$rRegistro{'tNombre'}.' '.$rRegistro{'tApellidos'});?></h3></td>
+        <td height="198" valign="middle" align="center" colspan="2"><h1><?=utf8_encode($rRegistro{'tTitulo'}.' '.$rRegistro{'tNombre'}.' '.$rRegistro{'tApellidos'});?></h1></td>
+    </tr>
+    <tr>
+        <td colspan="2" height="130"></td>
     </tr>
     </table>
 </body>

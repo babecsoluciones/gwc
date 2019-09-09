@@ -27,7 +27,7 @@ $html=file_get_contents($url);
 //==============================================================
 
 
-include("mpdf/mpdf-2.php");
+include("../../mpdf/mpdf-2.php");
 $mpdf=new mPDF('c'); 
 
 $mpdf->mirrorMargins = true;

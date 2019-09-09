@@ -12,6 +12,7 @@ RewriteCond %{REQUEST_FILENAME} !-d
 # if not, take the entire URL + query string and append it to index.php.
 
 RewriteRule ^([a-zA-Z]{3})\/([a-z\-]+)\/([a-z\-]+)\/(?(?=v1)(v1\/([a-z0-9]+)\/)|())$ index.php?tDirectorio=$1&tCodSeccion=$2&v1=$5
+# RewriteRule ^(dip)\/(v1)\/([a-z0-9]+)\/$ mod/dip/cata-dip-gen.php?v1=$3
 RewriteRule ^(completar)\/(v1)\/([0-9]+)\/$ completar.php?v1=$3
 RewriteRule ^(login|logout|registro)\/$ $1.php
 
