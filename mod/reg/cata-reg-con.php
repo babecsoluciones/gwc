@@ -79,7 +79,7 @@ $hoy = date('Y-m-d H:i:s',strtotime("+12 hours"));
                                                 <td><?=ucwords($rPedido{'tEstatusPago'});?></td>
 												<td>
 													<? if($rPedido{'tArchivoDiploma'} && $rPedido{'eCodEstatusPago'}==9 && ($rPedido{'fhFechaCurso'}<=$hoy) && ($_SESSION['sessionAdmin']['eCodUsuario']==$rPedido{'eCodUsuarioRegistro'})) { ?>
-                        							<a href="/dip/cata-dip-gen/generar-diplomas/v1/<?=$rPedido{'eCodRegistro'};?>/" class="btn btn-info" target="_blank">Descargar Diploma</a>
+                        							<a href="<?=obtenerURL();?>mod/dip/cata-dip-gen/generar-diplomas/v1/<?=$rPedido{'eCodRegistro'};?>/" class="btn btn-info" target="_blank">Descargar Diploma</a>
                         							<? } else{ ?>
 													<a href="#" class="btn btn-warning">No Disponible</a>
 													<? } ?>
