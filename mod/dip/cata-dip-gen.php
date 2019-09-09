@@ -25,7 +25,7 @@ $html=str_replace('font-size:14px;','font-size:12px;',$html);
 //==============================================================
 
 
-include("./mpdf/mpdf-2.php");
+include("mpdf/mpdf-2.php");
 $mpdf=new mPDF('c'); 
 
 $mpdf->mirrorMargins = true;
