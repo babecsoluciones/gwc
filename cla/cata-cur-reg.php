@@ -67,7 +67,9 @@ $data = json_decode( file_get_contents('php://input') );
     $tFlyer = ($data->bFicheroFlyer) ? "'".$data->tFicheroFlyer."'" : ($data->tImagen ? "'".base64toImage(base64_encode($data->tImagen))."'" : false);
 
     $tSlider = ($data->bFicheroSlider) ? "'".$data->tFicheroSlider."'" : ($data->tImagen2 ? "'".base64toImage(base64_encode($data->tImagen2))."'" : false);
-        
+
+    $tArchivoDiploma = ($data->bFicheroDiploma) ? "'".$data->tFicheroDiploma."'" : ($data->tImagen3 ? "'".base64toImage(base64_encode($data->tImagen3))."'" : false);
+
     if(!$tTitulo)       {$errores[] = 'El campo TITULO es obligatorio'; }
     if(!$tObjetivo)     {$errores[] = 'El campo OBJETIVO es obligatorio'; }
     if(!$tDescripcion)  {$errores[] = 'El campo DESCRIPCION es obligatorio'; }
@@ -108,7 +110,8 @@ if(!sizeof($errores))
             eHoras,
             tUbicacion,
             tFlyer,
-            tSlider
+            tSlider,
+			tArchivoDiploma
 			)
             VALUES
             (
@@ -122,7 +125,8 @@ if(!sizeof($errores))
             $eHoras,
             $tUbicacion,
             $tFlyer,
-            $tSlider
+            $tSlider,
+			$tArchivoDiploma
             )";
         }
         else
@@ -140,7 +144,8 @@ if(!sizeof($errores))
                             eHoras=$eHoras,
                             tUbicacion=$tUbicacion,
                             tFlyer=$tFlyer,
-                            tSlider=$tSlider
+                            tSlider=$tSlider,
+							tArchivoDiploma=$tArchivoDiploma
                             WHERE
                             eCodCurso = ".$eCodCurso;
         }

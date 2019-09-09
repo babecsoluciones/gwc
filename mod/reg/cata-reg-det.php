@@ -10,6 +10,7 @@ $select = "	SELECT
                                                           bc.*,
                                                           brc.eCodRegistro,
                                                           brc.eCodEstatusPago,
+                                                          brc.eCodUsuario,
                                                           ce.tNombre tEmpresa,
                                                           cep.tNombre tEstatusPago,
                                                           cm.tNombre tModalidad,

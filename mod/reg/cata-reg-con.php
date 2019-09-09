@@ -13,6 +13,9 @@ session_start();
 $bAll = $_SESSION['bAll'];
 $bDelete = $_SESSION['bDelete'];
 
+date_default_timezone_set('America/America/Mexico_City');
+$hoy = date('Y-m-d H:i:s',strtotime("+12 hours"));
+
 ?>
 
 <div class="row">
@@ -38,13 +41,15 @@ $bDelete = $_SESSION['bDelete'];
                                                 <? if($_SESSION['sessionAdmin']['eCodPerfil']!=4) { ?><td>Participante</td><? } ?>
                                                 <th>Curso</th>
                                                 <th>Estatus Pago</th>
-                                                
+                                                <th>Diploma</th>
                                             </tr>
                                         </thead>
                                         <?
                                         $select = "SELECT 
                                                           bc.*,
                                                           brc.eCodRegistro,
+                                                          brc.eCodEstatusPago,
+                                                          brc.eCodUsuario,
                                                           ce.tNombre tEmpresa,
                                                           cep.tNombre tEstatusPago,
                                                           brc.fhFechaRegistro,
@@ -72,6 +77,13 @@ $bDelete = $_SESSION['bDelete'];
                                                 <? if($_SESSION['sessionAdmin']['eCodPerfil']!=4) { ?><td><?=ucwords($rPedido{'tNombreUsuario'}.' '.$rPedido{'tApellidosUsuario'});?></td><? } ?>
                                                 <td><?=ucwords($rPedido{'tTitulo'});?></td>
                                                 <td><?=ucwords($rPedido{'tEstatusPago'});?></td>
+												<td>
+													<? if($rPedido{'tArchivoDiploma'} && $rPedido{'eCodEstatusPago'}==9 && ($rPedido{'fhFechaCurso'}<=$hoy) && ($_SESSION['sessionAdmin']['eCodUsuario']==$rPedido{'eCodUsuario'})) { ?>
+                        							<a href="/dip/cata-dip-gen/generar-diplomas/v1/<?=$rPedido{'eCodRegistro'};?>/" class="btn btn-info" target="_blank">Descargar Diploma</a>
+                        							<? } else{ ?>
+													<a href="#" class="btn btn-warning">No Disponible</a>
+													<? } ?>
+												</td>
                                             </tr>
                                             <? } ?>
                                         </tbody>

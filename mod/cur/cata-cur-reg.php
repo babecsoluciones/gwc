@@ -19,14 +19,14 @@ $rPublicacion = mysql_fetch_array($rsPublicacion);
 ?>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.js"></script>
 	<script type="text/javascript">
-		function readURL(input,destino) {
+		function readURL(input,destino,campo) {
 			if (input.files && input.files[0]) {
 				var reader = new FileReader();
 				reader.onload = function (e) {
 					$('#falseinput').attr('src', e.target.result);
 					$('#base').val(e.target.result);
           document.getElementById(destino).value=e.target.result;
-                    document.getElementById('bFichero').value="";
+                    document.getElementById('bFichero'+campo).value="";
           //llenar();
 				};
 				reader.readAsDataURL(input.files[0]);
@@ -192,7 +192,7 @@ var bandera = false;
 
            <div class="form-group">
               <label>Imagen Pauta</label>
-              <input type="file" class="form-control" name="tFlyer" id="tFlyer" onchange="readURL(this,'tImagen')">
+              <input type="file" class="form-control" name="tFlyer" id="tFlyer" onchange="readURL(this,'tImagen','Flyer')">
 			   <input type="hidden" id="tImagen" name="tImagen" value="<?=base64_decode($rPublicacion{'tFlyer'})?>">
                <input type="hidden" id="tFicheroFlyer" name="tFicheroFlyer" value="<?=$rPublicacion{'tFlyer'}?>">
                <input type="hidden" id="bFicheroFlyer" name="bFicheroFlyer" value="<?=$rPublicacion{'tFlyer'} ? 1 : 0?>">
@@ -200,11 +200,19 @@ var bandera = false;
            </div>
            <div class="form-group">
               <label>Imagen Slider</label>
-              <input type="file" class="form-control" name="tSlider" id="tSlider" onchange="readURL(this,'tImagen2')">
+              <input type="file" class="form-control" name="tSlider" id="tSlider" onchange="readURL(this,'tImagen2','Slider')">
 			   <input type="hidden" id="tImagen2" name="tImagen2" value="<?=base64_decode($rPublicacion{'tSlider'})?>">
                <input type="hidden" id="tFicheroSlider" name="tFicheroSlider" value="<?=$rPublicacion{'tSlider'}?>">
                <input type="hidden" id="bFicheroSlider" name="bFicheroSlider" value="<?=$rPublicacion{'tSlider'} ? 1 : 0?>">
                <img src="<?=obtenerURL();?>cla/<?=$rPublicacion{'tSlider'}?>" width="250" height="250" <?=(!$rPublicacion{'tSlider'} ? 'style="display:none;"' : '')?>>
+           </div>
+		   <div class="form-group">
+              <label>Fondo Diploma</label>
+              <input type="file" class="form-control" name="tArchivoDiploma" id="tArchivoDiploma" onchange="readURL(this,'tImagen3','Diploma')">
+			   <input type="hidden" id="tImagen3" name="tImagen3" value="<?=base64_decode($rPublicacion{'tArchivoDiploma'})?>">
+               <input type="hidden" id="tFicheroDiploma" name="tFicheroDiploma" value="<?=$rPublicacion{'tArchivoDiploma'}?>">
+               <input type="hidden" id="bFicheroDiploma" name="bFicheroDiploma" value="<?=$rPublicacion{'tArchivoDiploma'} ? 1 : 0?>">
+               <img src="<?=obtenerURL();?>cla/<?=$rPublicacion{'tArchivoDiploma'}?>" width="250" height="250" <?=(!$rPublicacion{'tArchivoDiploma'} ? 'style="display:none;"' : '')?>>
            </div>
            
                                         <!--campos-->
