@@ -1,7 +1,7 @@
 <?php
-include("../../cnx/swgc-mysql.php");
-require_once("../../cls/cls-sistema.php");
-include("../../inc/fun-ini.php");
+include("./cnx/swgc-mysql.php");
+require_once("./cls/cls-sistema.php");
+//include("../../inc/fun-ini.php");
 $url = obtenerURL()."mod/dip/light-dip-gen.php?eCodRegistro=".$_GET['v1'];
 
 
