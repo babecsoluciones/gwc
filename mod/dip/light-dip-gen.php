@@ -27,7 +27,7 @@ $rRegistro = mysql_fetch_array($rsRegistro);
     </style>
 </head>
 
-<body style="margin:0; padding:0; background-image:url('<?=obtenerURL()?>cla/<?=$rRegistro{'tArchivoDiploma'};?>'); background-repeat: no-repeat; background-size: 100% 100%;">
+<body style="margin:0; padding:0; background-image:url('<?=obtenerURL()?>cla/<?=$rRegistro{'tArchivoDiploma'};?>'); background-repeat: no-repeat; background-size: 150% 150%;">
    
     <table width="100%" height="100%">
     <tr>
