@@ -35,7 +35,7 @@ $html = '
    
     <table width="100%" height="100%">
     <tr>
-        <td height="464" colspan="2"></td>
+        <td height="444" colspan="2"></td>
     </tr>
     <tr>
         <td height="198" valign="middle" align="center" colspan="2"><h1 style="font-family: dynalight, sans-serif;">'.utf8_encode($rRegistro{'tTitulo'}.' '.$rRegistro{'tNombre'}.' '.$rRegistro{'tApellidos'}).'</h1></td>
