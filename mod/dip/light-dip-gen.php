@@ -19,15 +19,16 @@ $rRegistro = mysql_fetch_array($rsRegistro);
     <title>Detalle del Evento</title>
     <script src="//use.edgefonts.net/dynalight.js"></script>
     <style>
-    .estilo
+    
+    .h1
         {
             font-family: dynalight, sans-serif;
         }
     </style>
 </head>
 
-<body class="estilo" style="margin:0; padding:0; background-image:url('<?=obtenerURL()?>cla/<?=$rRegistro{'tArchivoDiploma'};?>'); background-size: contain;">
-    <center>
+<body style="margin:0; padding:0; background-image:url('<?=obtenerURL()?>cla/<?=$rRegistro{'tArchivoDiploma'};?>'); background-size: cover;">
+   
     <table>
     <tr>
         <td height="464" colspan="2"></td>
@@ -39,7 +40,7 @@ $rRegistro = mysql_fetch_array($rsRegistro);
         <td colspan="2" height="130"></td>
     </tr>
     </table>
-    </center>
+    
 </body>
 </html>
 
