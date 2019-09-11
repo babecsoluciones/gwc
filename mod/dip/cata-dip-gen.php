@@ -13,12 +13,19 @@ $url = obtenerURL()."mod/dip/light-dip-gen.php?eCodRegistro=".$_GET['v1'];
 
 $html=file_get_contents($url);
 
+$fichero = sprintf("%07d",$_GET['v1']).".html";
 
+unlink ("./".fichero);
+
+$pf = fopen($fichero,"w");
+fwrite($pf,$html);
+fclose($pf);
 //echo '<textarea>'.file_get_contents($url).'</textarea>';
 
 //$html=str_replace('font-size:14px;','font-size:12px;',$html);
 
-
+$url = obtenerURL()."mod/dip/".$fichero;
+$html=file_get_contents($url);
 //echo $html; 
 
 //die();
