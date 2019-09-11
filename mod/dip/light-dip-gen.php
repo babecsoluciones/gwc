@@ -26,10 +26,11 @@ $rRegistro = mysql_fetch_array($rsRegistro);
     </style>
 </head>
 
-<body class="estilo" style="margin:0; padding:0;">
-    <table width="612" height="792" style="background-image:url('<?=obtenerURL()?>cla/<?=$rRegistro{'tArchivoDiploma'};?>'); background-size: contain;">
+<body class="estilo" style="margin:0; padding:0; background-image:url('<?=obtenerURL()?>cla/<?=$rRegistro{'tArchivoDiploma'};?>'); background-size: contain;">
+    <center>
+    <table>
     <tr>
-        <td height="354" colspan="2"></td>
+        <td height="464" colspan="2"></td>
     </tr>
     <tr>
         <td height="198" valign="middle" align="center" colspan="2"><h1><?=utf8_encode($rRegistro{'tTitulo'}.' '.$rRegistro{'tNombre'}.' '.$rRegistro{'tApellidos'});?></h1></td>
@@ -38,6 +39,7 @@ $rRegistro = mysql_fetch_array($rsRegistro);
         <td colspan="2" height="130"></td>
     </tr>
     </table>
+    </center>
 </body>
 </html>
 
