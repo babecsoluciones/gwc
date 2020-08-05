@@ -61,7 +61,7 @@ $rUsuario = mysql_fetch_array(mysql_query($select));
 
 </head>
 
-<body class="animsition">
+<body class="animsition" oncontextmenu="return false;">
     <div class="page-wrapper">
         <div class="page-content--bge5" style="overflow:scroll">
             <div class="container">

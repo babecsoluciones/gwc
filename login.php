@@ -46,7 +46,7 @@ session_start();
 
 </head>
 
-<body class="animsition">
+<body class="animsition" oncontextmenu="return false;">
     <div class="page-wrapper">
         <div class="page-content--bge5">
             <div class="container">

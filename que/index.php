@@ -45,7 +45,7 @@ if(isset($_REQUEST["term"])){
                     
                     $url = generarUrl($row{'tCodSeccion'},true);
                     
-                    echo "<p><a href='$url'>" . $row["tTitulo"] . "</a></p>";
+                    echo "<p><a href='$url'>". $row["tTitulo"] . "</a></p>";
                 }
             } else{
                 echo "<p>Sin resultados</p>";

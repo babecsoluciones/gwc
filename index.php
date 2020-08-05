@@ -46,7 +46,7 @@ if(!$_GET['tDirectorio']||!$_GET['tCodSeccion'])
     <!-- Title Page-->
     <title>GWC | Dashboard</title>
 
-    <!-- Fontfaces CSS-->
+    !-- Fontfaces CSS-->
     <link href="/css/font-face.css" rel="stylesheet" media="all">
     <link href="/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
     <link href="/vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
@@ -73,11 +73,44 @@ if(!$_GET['tDirectorio']||!$_GET['tCodSeccion'])
     <link rel="stylesheet" type="text/css" href="/DataTables/datatables.min.css"/>
 
     <!--DatePicker-->
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/Start/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/Base/jquery-ui.css">
     
     <link href="/css/calendario.css" rel="stylesheet" media="all">
     
-    <!--<link href="/ext/autocomplete/easy-autocomplete.min.css" rel="stylesheet" media="all">-->
+    <link href="/ext/autocomplete/easy-autocomplete.min.css" rel="stylesheet" media="all">
+    
+    <!-- JAVASCRIPTS -->
+    <!-- Jquery JS-->
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <!-- Bootstrap JS-->
+    <script src="/vendor/bootstrap-4.1/popper.min.js"></script>
+    <script src="/vendor/bootstrap-4.1/bootstrap.min.js"></script>
+    <!-- Vendor JS       -->
+    <script  src="/vendor/slick/slick.min.js"></script>
+    <!--<script  src="/vendor/wow/wow.min.js"></script>-->
+    
+    
+    <script  src="/vendor/circle-progress/circle-progress.min.js"></script>
+    <script  src="/vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="/vendor/select2/select2.min.js"></script>
+    
+    
+        
+    <!--DatePicker bootstrap-->
+    <script type="text/javascript" src="/js/bootstrap-datepicker.js"></script>
+    
+	
+    
+    <!--DataTables-->
+    <script type="text/javascript" src="/DataTables/datatables.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript" src="/js/jquery.serializejson.js"></script>
+    <script type="text/javascript" src="/ext/autocomplete/jquery.easy-autocomplete.min.js"></script>
+  
+        
+    <!-- Script -->
+    <script src="/js/aplicacion.js"></script>
     
     <style type="text/css">
     .search-box{
@@ -112,6 +145,28 @@ if(!$_GET['tDirectorio']||!$_GET['tCodSeccion'])
         cursor: pointer;
     }
     .result p:hover{
+        background: #f2f2f2;
+    }
+    .resultClient{
+        position: absolute;        
+        z-index: 999;
+        top: 100%;
+        left: 0;
+        background-color: #FFF;
+    }
+    .resultClient{
+        width: 100%;
+        box-sizing: border-box;
+    }
+    /* Formatting resultClient items */
+    .resultClient p{
+        margin: 0;
+        padding: 7px 10px;
+        border: 1px solid #CCCCCC;
+        border-top: none;
+        cursor: pointer;
+    }
+    .resultClient p:hover{
         background: #f2f2f2;
     }
     </style>
@@ -345,22 +400,7 @@ setTimeout(function(){
       
     </div>
   </div>
-        <!-- Modal -->
-  <div class="modal fade" id="resExito" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-body">
-          <center>
-            <img src="/res/ok.png" style="width:75px; height:75px;"><br>
-              <h3>Registro Guardado Exitosamente</h3><br>
-            </center>
-        </div>
-      </div>
-      
-    </div>
-  </div>
+        
         <!-- Modal -->
   <div class="modal fade" id="resConsulta" role="dialog">
     <div class="modal-dialog">
@@ -379,12 +419,22 @@ setTimeout(function(){
     </div>
   </div>
  
+      <!-- Modal -->
+  <div class="modal fade" id="resExito" role="dialog">
+    <div class="modal-dialog">
+       <div class="alert alert-success">
+  <strong>&Eacute;xito!</strong> Registro Guardado Exitosamente
+</div>
+      
+    </div>
+  </div>
+   
         <!-- Modal -->
   <div class="modal fade" id="resError" role="dialog">
-    <div class="modal-dialog">
+    <div class="modal-dialog" id="divErrores">
     
       <!-- Modal content-->
-      <div class="modal-content">
+      <!--<div class="modal-content">
         <div class="modal-body">
           <center>
             <img src="/res/error.png" style="width:75px; height:75px;"><br>
@@ -392,83 +442,147 @@ setTimeout(function(){
             </center>
             <div id="divErrores" name="divErrores"></div>
         </div>
-      </div>
+      </div>-->
+        <div class="alert alert-danger">
+            <strong>Error!</strong> Favor de validar la siguiente informaci&oacute;n
+        </div>
       
     </div>
   </div>
+      
+  <!-- Modal guardar cambios -->
+<div class="modal fade" id="modGuardar" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <table width="100%">
+                    <tr>
+                        <td colspan="2" align="center">¿Confirmas que deseas guardar los cambios?</td>
+                    </tr>
+                    <tr>
+                        <td align="center">
+                            <button type="button" class="form-control btn btn-success" onclick="serializar()">Guardar</button>
+                        </td>
+                        <td align="center">
+                            <button type="button" class="form-control btn btn-default" data-dismiss="modal">Cerrar</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+</div>
         
-        <!-- Jquery JS-->
-    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-    <!-- Bootstrap JS-->
-    <script src="/vendor/bootstrap-4.1/popper.min.js"></script>
-    <script src="/vendor/bootstrap-4.1/bootstrap.min.js"></script>
-    <!-- Vendor JS       -->
-    <script  src="/vendor/slick/slick.min.js"></script>
-    <!--<script  src="/vendor/wow/wow.min.js"></script>-->
-    <script  src="/vendor/animsition/animsition.min.js"></script>
+    <div class="modal fade" id="modMenu" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <nav class="navbar-mobile">
+                <div class="container-fluid">
+                    <ul class="navbar-mobile__list list-unstyled">
+                        
+						<?
+						echo $clSistema->generarMenu();
+						?>
+                        
+                    </ul>
+                </div>
+            </nav>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+        
+   
     
-    <script  src="/vendor/circle-progress/circle-progress.min.js"></script>
-    <script  src="/vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
-    <script src="/vendor/select2/select2.min.js"></script>
-    
-    <!-- Main JS-->
-    <script src="/js/main.js"></script>
-	<script src="/js/aplicacion.js"></script>
-    
-        <!--DataTables-->
-        <script type="text/javascript" src="/DataTables/datatables.min.js"></script>
-	
-          <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-        
-        <script type="text/javascript" src="/js/jquery.serializejson.js"></script>
-        
-        <!--<script type="text/javascript" src="/ext/autocomplete/jquery.easy-autocomplete.min.js"></script>-->
-        
         <script>
       
+      function mostrarFiltros() {
+  var x = document.getElementById("divFiltros");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+        
+      /* proceso de guardado*/
+        function procesoGuardar(bloquear = false)
+        {
+            var cmbBtn = document.querySelectorAll("input[type=button]");
+            cmbBtn.forEach(function(nodo){
+                nodo.disabled = (bloquear) ? true : false;
+            });
+        }
       /*Preparación y envío*/
       function guardar(cierre)
       {
-          var formulario = document.getElementById('datos'),
-              eAccion = document.getElementById('eAccion');
-          
-                  eAccion.value = 1;
-                    if(confirm((cierre ? "Tu sesión se cerrará al guardar los cambios\n" : "") + "Deseas guardar la información?"))
-                        {
-                            serializar();
-                        }
+          procesoGuardar(true);
+          $('#modGuardar').modal('show');
+          //var formulario = document.getElementById('datos'),
+          //    eAccion = document.getElementById('eAccion');
+          //
+          //        eAccion.value = 1;
+          //          if(confirm((cierre ? "Tu sesión se cerrará al guardar los cambios\n" : "") + "Deseas guardar la información?"))
+          //              {
+          //                  serializar();
+          //              }
       }
 
       function enviar(cadena)
       {
+          
           document.getElementById('imgProceso').style.display = 'inline';
          //alert(cadena);
           
           var divErrores = document.getElementById('divErrores');
-          setTimeout(function(){ 
+          
             $.ajax({
               type: "POST",
-              url: "<?=obtenerURL();?>cla/<?=$_GET['tCodSeccion'];?>.php",
+              url: "/cla/<?=$_GET['tCodSeccion'];?>.php",
               data: cadena,
               contentType: "application/json; charset=utf-8",
               dataType: "json",
               success: function(data){
                   document.getElementById('imgProceso').style.display = 'none';
+                  procesoGuardar(false);
                   if(data.exito==1)
                   {
-                     
                       $('#resExito').modal('show');
                       setTimeout(function(){ $('#resExito').modal('hide'); }, 3000);
-                      setTimeout(function(){ window.location="<?=$_SERVER['HTTP_REFERER'] ? $_SERVER['HTTP_REFERER'] : generarUrl(str_replace('reg','con',$_GET['tCodSeccion']))?>"; }, 3500);
+                      setTimeout(function(){ window.location="<?=(($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : $clSistema->seccionPadre($_GET['tCodSeccion']) );?>"; }, 3500);
                   }
                   else
                       {
                           var mensaje="";
+                          var msgHTML="";
                           for(var i=0;i<data.errores.length;i++)
                      {
                          mensaje += "-"+data.errores[i]+"\n";
+                         msgHTML += "<div class=\"alert alert-danger\"><strong>"+data.errores[i]+"</strong></div>";
                      }
-                          alert("Error al procesar la solicitud.\n<-Valide la siguiente informacion->\n\n"+mensaje);
+                          document.getElementById('divErrores').innerHTML = "<div class=\"alert alert-danger\"><strong>Error!</strong> Favor de validar la siguiente informaci&oacute;n</div>";
+                          document.getElementById('divErrores').innerHTML += msgHTML;
+                          setTimeout(function(){
+                                $('#resError').modal('show');
+                          },200);
+                          //alert("Error al procesar la solicitud.\n<-Valide la siguiente informacion->\n\n"+mensaje);
                          
                       }
                   
@@ -477,12 +591,13 @@ setTimeout(function(){
                   alert('Error al enviar los datos.');
               }
           });
-          }, 2500);
+          
           
       }
 
       function serializar()
       {
+          $('#modGuardar').modal('hide');
           var obj = $('#datos').serializeJSON();
           var jsonString = JSON.stringify(obj);
           //alert(jsonString);

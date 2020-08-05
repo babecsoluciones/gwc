@@ -93,6 +93,7 @@ date_default_timezone_set('America/America/Mexico_City');
                     " AND ssb.tCodPadre = '".$tCodSeccion."'";
         
         //echo $select;
+       
         $rsBotones = mysql_query($select);
         while($rBoton = mysql_fetch_array($rsBotones))
         { 
@@ -108,10 +109,16 @@ date_default_timezone_set('America/America/Mexico_City');
             else
          {  $funcion = str_replace('url',$seccion,$rBoton{'tFuncion'}); }
          ?>
-            <button type="button" class="<?=$rBoton{'tClase'}?>" <?=($rBoton{'bDeshabilitado'}) ? 'disabled' : ''?> onclick="<?=($rBoton{'funcion'}) ? $rBoton{'funcion'} : $funcion?>" id="<?=(($rBoton{'tId'}) ? $rBoton{'tId'} : $rBoton{'tCodBoton'} )?>">
-            <?=$rBoton{'tIcono'}?> <?=($rBoton{'tEtiqueta'}) ? $rBoton{'tEtiqueta'} : $rBoton{'tTitulo'}?></button><?=$rBoton{'tHTML'}?>
+            <button 
+                    type="button" 
+                    class="<?=$rBoton{'tClase'}?>" <?=($rBoton{'bDeshabilitado'}) ? 'disabled' : ''?> 
+                    onclick="<?=($rBoton{'funcion'}) ? $rBoton{'funcion'} : $funcion?>" 
+                    id="<?=(($rBoton{'tId'}) ? $rBoton{'tId'} : $rBoton{'tCodBoton'} )?>">
+            <?=$rBoton{'tIcono'}?> <?=(($rBoton{'tEtiqueta'}) ? $rBoton{'tEtiqueta'} : $rBoton{'tTitulo'});?>
+            </button><?=$rBoton{'tHTML'}?>
            <? unset($funcion); ?>
            <? }
+       
     }
 
     function menuEmergente($codigo)

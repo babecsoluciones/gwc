@@ -1,7 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+error_reporting(0);
+ini_set('display_errors', 0);
 
-<head><meta http-equiv="Content-Type" content="text/html; charset=gb18030">
+require_once("cnx/swgc-mysql.php");
+require_once("cls/cls-sistema.php");
+include("inc/fun-ini.php");
+$clSistema = new clSis();
+session_start();
+?>
+<!DOCTYPE html>
+<html lang="es">
+
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <!-- Required meta tags-->
     
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -44,7 +54,7 @@
 
 </head>
 
-<body class="animsition">
+<body class="animsition" oncontextmenu="return false;">
     <div class="page-wrapper">
         <div class="page-content--bge5" style="overflow:scroll">
             <div class="container">
@@ -237,7 +247,7 @@ Fecha de &uacute;ltima actualizaci&oacute;n Agosto del 2019.
           
             $.ajax({
               type: "POST",
-              url: "http://app.e-micapacitacion.com/cla/registro.php",
+              url: "<?=obtenerURL();?>cla/registro.php",
               data: cadena,
               contentType: "application/json; charset=utf-8",
               dataType: "json",
